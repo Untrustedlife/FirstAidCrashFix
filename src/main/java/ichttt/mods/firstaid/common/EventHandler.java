@@ -144,7 +144,7 @@ public class EventHandler {
     @SubscribeEvent
     public static void registerCapability(AttachCapabilitiesEvent<Entity> event) {
         Entity obj = event.getObject();
-        if (CommonUtils.hasDamageModel(obj)) {
+        if (!obj.isDeadOrDying() && CommonUtils.hasDamageModel(obj)) {
             Player player = (Player) obj;
             AbstractPlayerDamageModel damageModel = PlayerDamageModel.create();
             event.addCapability(CapProvider.IDENTIFIER, new CapProvider(damageModel));

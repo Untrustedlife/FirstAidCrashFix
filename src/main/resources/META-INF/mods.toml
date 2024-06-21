@@ -10,7 +10,7 @@ license="Main Mod: GPLv3, API: LGPL v2.1"
     modId="firstaid"
     version="${file.jarVersion}"
     displayName="ULs First Aid Fork"
-    description="First Aid is a game changing mod focused around a new health system, this is a fork of that mod that fixes a game brekaing crash and other issues"
+    description="First Aid is a game changing mod focused around a new health system, this is a fork of that mod that fixes a game breaking crash and other issues."
     credits="Thanks to Ichttt for making the original mod, and thanks to rozarke for designing the textures for FirstAid!"
 [[dependencies.firstaid]]
     modId="minecraft"

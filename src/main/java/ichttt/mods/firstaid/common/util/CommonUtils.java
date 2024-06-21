@@ -145,6 +145,11 @@ public class CommonUtils {
         return getOptionalDamageModel(player).orElseThrow(() -> new IllegalArgumentException("Player " + player.getName().getContents() + " is missing a damage model!"));
     }
 
+    public static AbstractPlayerDamageModel getDamageModelRealOptional(Player player) {
+        return getOptionalDamageModel(player) || null;
+    }
+
+
     @Nonnull
     public static LazyOptional<AbstractPlayerDamageModel> getOptionalDamageModel(Player player) {
         return player.getCapability(CapabilityExtendedHealthSystem.INSTANCE);

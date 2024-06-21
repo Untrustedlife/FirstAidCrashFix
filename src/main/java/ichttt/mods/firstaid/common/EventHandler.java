@@ -77,7 +77,7 @@ public class EventHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST) //so all other can modify their damage first, and we apply after that
     public static void onLivingHurt(LivingHurtEvent event) {
         LivingEntity entity = event.getEntity();
-        if (entity.level.isClientSide || !CommonUtils.hasDamageModel(entity))
+        if (entity.isDeadOrDying() || entity.level.isClientSide || !CommonUtils.hasDamageModel(entity))
             return;
         float amountToDamage = event.getAmount();
         Player player = (Player) entity;

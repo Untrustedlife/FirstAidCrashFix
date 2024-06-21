@@ -144,12 +144,16 @@ public class EventHandler {
     @SubscribeEvent
     public static void registerCapability(AttachCapabilitiesEvent<Entity> event) {
         Entity obj = event.getObject();
-        if (!obj.isDeadOrDying() && CommonUtils.hasDamageModel(obj)) {
-            Player player = (Player) obj;
-            AbstractPlayerDamageModel damageModel = PlayerDamageModel.create();
-            event.addCapability(CapProvider.IDENTIFIER, new CapProvider(damageModel));
-            //replace the data manager with our wrapper to grab absorption
-            player.entityData = new SynchedEntityDataWrapper(player, player.entityData);
+        // Check if the entity is an instance of LivingEntity
+        if (obj instanceof LivingEntity) {
+            LivingEntity entity = (LivingEntity) obj;
+            if (!entity.isDeadOrDying() && CommonUtils.hasDamageModel(entity)) {
+                Player player = (Player) entity;
+                AbstractPlayerDamageModel damageModel = PlayerDamageModel.create();
+                event.addCapability(CapProvider.IDENTIFIER, new CapProvider(damageModel));
+                // Replace the data manager with our wrapper to grab absorption
+                player.entityData = new SynchedEntityDataWrapper(player, player.entityData);
+            }
         }
     }
 

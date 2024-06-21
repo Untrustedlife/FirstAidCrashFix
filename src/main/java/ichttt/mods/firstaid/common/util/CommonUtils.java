@@ -146,7 +146,7 @@ public class CommonUtils {
     }
 
     public static AbstractPlayerDamageModel getDamageModelRealOptional(Player player) {
-        AbstractPlayerDamageModel optionalDamageModel = getOptionalDamageModel(player);
+        LazyOptional<AbstractPlayerDamageModel> optionalDamageModel = getOptionalDamageModel(player);
         // Use LazyOptional's orElse to return null if the value is not present
         return optionalDamageModel.orElse(null);
     }

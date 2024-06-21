@@ -146,7 +146,8 @@ public class CommonUtils {
     }
 
     public static AbstractPlayerDamageModel getDamageModelRealOptional(Player player) {
-        return getOptionalDamageModel(player) || null;
+        AbstractPlayerDamageModel damageModel = getOptionalDamageModel(player);
+        return (damageModel != null) ? damageModel : null;
     }
 
 

@@ -161,8 +161,8 @@ public class EventHandler {
     public static void tickPlayers(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END && !event.player.getAbilities().invulnerable) {
             if (event.player.isDeadOrDying()) return;
-            AbstractPlayerDamageModel model = CommonUtils.getDamageModelRealOptional(event.player)
-            //This would allow peopel to cheat but i dont care
+            AbstractPlayerDamageModel model = CommonUtils.getDamageModelRealOptional(event.player);
+            //This would allow people to cheat but I don't care
             if (model != null){
                 model.tick(event.player.level, event.player);
             }

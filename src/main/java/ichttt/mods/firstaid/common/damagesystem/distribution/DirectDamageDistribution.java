@@ -37,6 +37,7 @@ public class DirectDamageDistribution implements IDamageDistribution {
 
     @Override
     public float distributeDamage(float damage, @Nonnull Player player, @Nonnull DamageSource source, boolean addStat) {
+        //Alive NOT verified
         return CommonUtils.getDamageModel(player).getFromEnum(part).damage(damage, player, debuff);
     }
 }

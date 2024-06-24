@@ -61,6 +61,7 @@ public class MessageApplyHealingItem {
             NetworkEvent.Context ctx = supplier.get();
             ServerPlayer player = CommonUtils.checkServer(ctx);
             ctx.enqueueWork(() -> {
+                //Alive NOT verified
                 AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(player);
                 ItemStack stack = player.getItemInHand(message.hand);
                 Item item = stack.getItem();

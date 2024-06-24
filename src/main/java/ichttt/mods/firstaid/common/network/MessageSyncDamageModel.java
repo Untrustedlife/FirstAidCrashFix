@@ -53,6 +53,7 @@ public class MessageSyncDamageModel {
             CommonUtils.checkClient(ctx);
             ctx.enqueueWork(() -> {
                 Minecraft mc = Minecraft.getInstance();
+                //Alive NOT verified
                 AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(mc.player);
                 if (message.scaleMaxHealth)
                     damageModel.runScaleLogic(mc.player);

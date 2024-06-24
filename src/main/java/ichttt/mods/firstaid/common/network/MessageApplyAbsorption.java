@@ -44,6 +44,7 @@ public class MessageApplyAbsorption {
         public static void onMessage(MessageApplyAbsorption message, Supplier<NetworkEvent.Context> supplier) {
             NetworkEvent.Context ctx = supplier.get();
             CommonUtils.checkClient(ctx);
+            //Alive NOT verified
             ctx.enqueueWork(() -> CommonUtils.getDamageModel(Minecraft.getInstance().player).setAbsorption(message.amount));
         }
     }

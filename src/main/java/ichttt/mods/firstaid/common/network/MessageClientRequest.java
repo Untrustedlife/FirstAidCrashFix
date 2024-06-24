@@ -56,8 +56,10 @@ public class MessageClientRequest {
             ServerPlayer player = CommonUtils.checkServer(ctx);
             if (message.type == Type.TUTORIAL_COMPLETE) {
                 CapProvider.tutorialDone.add(player.getName().getString());
+                //Alive NOT verified
                 ctx.enqueueWork(() -> CommonUtils.getDamageModel(player).hasTutorial = true);
             } else if (message.type == Type.REQUEST_REFRESH) {
+                    //Alive NOT verified
                     FirstAid.NETWORKING.send(PacketDistributor.PLAYER.with(() -> player), new MessageSyncDamageModel(CommonUtils.getDamageModel(player), true));
             }
         }

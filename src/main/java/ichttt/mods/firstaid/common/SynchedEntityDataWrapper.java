@@ -63,6 +63,7 @@ public class SynchedEntityDataWrapper extends SynchedEntityData {
     @Nonnull
     public <T> T get(@Nonnull EntityDataAccessor<T> key) {
         if (key == Player.DATA_PLAYER_ABSORPTION_ID && player.isAlive())
+            //Alive verified above
             parent.set(key, (T) CommonUtils.getDamageModel(player).getAbsorption());
         return parent.get(key);
     }
@@ -78,7 +79,6 @@ public class SynchedEntityDataWrapper extends SynchedEntityData {
                 set_impl(key, value);
             return;
         }
-
         if (key == Player.DATA_PLAYER_ABSORPTION_ID) {
             float floatValue = (Float) value;
             if (player instanceof ServerPlayer) { //may be EntityOtherPlayerMP as well
@@ -86,12 +86,14 @@ public class SynchedEntityDataWrapper extends SynchedEntityData {
                 if (playerMP.connection != null) //also fired when connecting, ignore(otherwise the net handler would crash)
                     FirstAid.NETWORKING.send(PacketDistributor.PLAYER.with(() -> playerMP), new MessageApplyAbsorption(floatValue));
             }
+            //Alive NOT verified
             CommonUtils.getDamageModel(player).setAbsorption(floatValue);
         } else if (key == LivingEntity.DATA_HEALTH_ID) {
             // AVERT YOUR EYES - this code is barely readable and very hacky
             if (value instanceof Float && !player.level.isClientSide) {
                 float aFloat = (Float) value;
                 if (aFloat > player.getMaxHealth()) {
+                    //Alive NOT verified
                     CommonUtils.getDamageModel(player).forEach(damageablePart -> damageablePart.currentHealth = damageablePart.getMaxHealth());
                 } else if (beingRevived) {
                     if (FirstAidConfig.GENERAL.debug.get())
@@ -109,6 +111,7 @@ public class SynchedEntityDataWrapper extends SynchedEntityData {
                                 if (FirstAidConfig.GENERAL.debug.get()) {
                                     CommonUtils.debugLogStacktrace("DAMAGING: " + (-healed));
                                 }
+                                //Alive not verified
                                 DamageDistribution.handleDamageTaken(RandomDamageDistribution.getDefault(), CommonUtils.getDamageModel(player), -healed, player, DamageSource.MAGIC, true, true);
                             } else {
                                 if (FirstAidConfig.GENERAL.debug.get()) {

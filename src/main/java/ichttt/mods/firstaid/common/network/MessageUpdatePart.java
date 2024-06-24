@@ -73,6 +73,7 @@ public class MessageUpdatePart {
             NetworkEvent.Context ctx = supplier.get();
             CommonUtils.checkClient(ctx);
             ctx.enqueueWork(() -> {
+                //Alive NOT verified
                 AbstractDamageablePart damageablePart = CommonUtils.getDamageModel(Minecraft.getInstance().player).getFromEnum(EnumPlayerPart.VALUES[message.id]);
                 damageablePart.setMaxHealth(message.maxHealth);
                 damageablePart.setAbsorption(message.absorption);

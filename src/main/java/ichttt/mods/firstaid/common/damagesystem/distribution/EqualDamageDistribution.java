@@ -111,9 +111,9 @@ public class EqualDamageDistribution implements IDamageDistribution {
     public float distributeDamage(float damage, @Nonnull Player player, @Nonnull DamageSource source, boolean addStat) {
         damage = reduceDamage(damage, player, source);
         if (damage <= 0F) return 0F;
+        //Alive NOT verified
         AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(player);
         Objects.requireNonNull(damageModel);
-
         float damageLeft = distributeOnParts(damage, damageModel, player, tryNoKill);
         if (damageLeft > 0F && tryNoKill)
             damageLeft = distributeOnParts(damage, damageModel, player, false);

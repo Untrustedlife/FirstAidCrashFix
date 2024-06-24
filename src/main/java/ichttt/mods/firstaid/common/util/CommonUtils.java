@@ -142,6 +142,7 @@ public class CommonUtils {
 
     @Nonnull
     public static AbstractPlayerDamageModel getDamageModel(Player player) {
+        //Honestly we should try to do anything but crashing the game here...
         return getOptionalDamageModel(player).orElseThrow(() -> new IllegalArgumentException("Player " + player.getName().getContents() + " is missing a damage model!"));
     }
 

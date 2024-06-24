@@ -88,6 +88,7 @@ public class EventHandler {
             return;
         float amountToDamage = event.getAmount();
         Player player = (Player) entity;
+        //Alive verified above
         AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(player);
         DamageSource source = event.getSource();
 
@@ -175,6 +176,7 @@ public class EventHandler {
         if (ModList.get().isLoaded("morpheus")) return;
         for (Player player : event.getLevel().players()) {
             if (player.isSleepingLongEnough())
+                //Alive not verified
                 CommonUtils.getDamageModel(player).sleepHeal(player);
         }
     }
@@ -260,6 +262,7 @@ public class EventHandler {
     public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.getEntity().level.isClientSide) {
             FirstAid.LOGGER.debug("Sending damage model to " + event.getEntity().getName());
+             //Alive NOT verified
             AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(event.getEntity());
             if (damageModel.hasTutorial)
                 CapProvider.tutorialDone.add(event.getEntity().getName().getString());
@@ -284,6 +287,7 @@ public class EventHandler {
     public static void onDimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
         Player player = event.getEntity();
         if (!player.level.isClientSide && player instanceof ServerPlayer) //Mojang seems to wipe all caps on teleport
+            //Alive NOT verified
             FirstAid.NETWORKING.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new MessageSyncDamageModel(CommonUtils.getDamageModel(player), true));
     }
 
@@ -303,6 +307,7 @@ public class EventHandler {
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         Player player = event.getEntity();
         if (!event.isEndConquered() && !player.level.isClientSide && player instanceof ServerPlayer) {
+            //Alive verified above
             AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(player);
             damageModel.runScaleLogic(player);
             damageModel.forEach(damageablePart -> damageablePart.heal(damageablePart.getMaxHealth(), player, false));

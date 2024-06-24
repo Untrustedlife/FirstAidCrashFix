@@ -58,6 +58,7 @@ public class MessageConfiguration {
 
             FirstAid.LOGGER.info("Received remote damage model");
             ctx.enqueueWork(() -> {
+                //Alive NOT verified
                 AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(Minecraft.getInstance().player);
                 damageModel.deserializeNBT(message.playerDamageModel);
                 if (damageModel.hasTutorial)

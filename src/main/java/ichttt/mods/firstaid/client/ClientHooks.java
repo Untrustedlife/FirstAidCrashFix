@@ -54,6 +54,7 @@ public class ClientHooks {
 
     public static void showGuiApplyHealth(InteractionHand activeHand) {
         Minecraft mc = Minecraft.getInstance();
+        //Alive NOT verified
         GuiHealthScreen.INSTANCE = new GuiHealthScreen(CommonUtils.getDamageModel(mc.player), activeHand);
         mc.setScreen(GuiHealthScreen.INSTANCE);
     }

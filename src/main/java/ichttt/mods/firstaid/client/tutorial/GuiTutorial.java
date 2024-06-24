@@ -77,6 +77,7 @@ public class GuiTutorial extends Screen {
             if (action.hasNext()) GuiTutorial.this.action.next();
             else {
                 FirstAid.NETWORKING.sendToServer(new MessageClientRequest(MessageClientRequest.Type.TUTORIAL_COMPLETE));
+                //Alive NOT verified
                 minecraft.setScreen(new GuiHealthScreen(CommonUtils.getDamageModel(minecraft.player)));
             }
         }));

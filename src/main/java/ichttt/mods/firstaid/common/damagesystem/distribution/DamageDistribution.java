@@ -125,6 +125,7 @@ public abstract class DamageDistribution implements IDamageDistribution {
     @Override
     public float distributeDamage(float damage, @Nonnull Player player, @Nonnull DamageSource source, boolean addStat) {
         if (damage <= 0F) return 0F;
+         //Alive NOT verified
         AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(player);
         if (FirstAidConfig.GENERAL.debug.get()) {
             FirstAid.LOGGER.info("Starting distribution of {} damage...", damage);

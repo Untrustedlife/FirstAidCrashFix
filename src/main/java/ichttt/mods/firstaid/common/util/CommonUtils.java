@@ -42,6 +42,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
+import ichttt.mods.firstaid.common.damagesystem.PlayerDamageModel;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -144,7 +145,8 @@ public class CommonUtils {
     public static AbstractPlayerDamageModel getDamageModel(Player player) {
         //Honestly we should try to do anything but crashing the game here so lets try...PlayerDamageModel.create()
         //Java has a garbage collector so it should be fine
-        return getOptionalDamageModel(player).orElse(PlayerDamageModel.create(player))
+        //Create a default player damage model if things ar ebroke
+        return getOptionalDamageModel(player).orElse(PlayerDamageModel.create());
     }
 
     public static AbstractPlayerDamageModel getDamageModelRealOptional(Player player) {

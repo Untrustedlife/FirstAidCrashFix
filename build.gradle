@@ -28,9 +28,9 @@ repositories {
     mavenLocal()
 }
 
-version = '1.12.1'
+version = '1.02'
 group = 'ichttt.mods.firstaid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'firstaid'
+archivesBaseName = 'firstaid-ulbugfix'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 

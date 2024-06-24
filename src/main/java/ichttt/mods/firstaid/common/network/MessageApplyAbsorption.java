@@ -41,7 +41,6 @@ public class MessageApplyAbsorption {
     }
 
     public static class Handler {
-
         public static void onMessage(MessageApplyAbsorption message, Supplier<NetworkEvent.Context> supplier) {
             NetworkEvent.Context ctx = supplier.get();
             CommonUtils.checkClient(ctx);

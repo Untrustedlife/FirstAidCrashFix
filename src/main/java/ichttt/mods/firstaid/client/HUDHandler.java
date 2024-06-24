@@ -90,7 +90,6 @@ public class HUDHandler implements ResourceManagerReloadListener, IGuiOverlay {
 
     private void doRenderOverlay(PoseStack stack, Minecraft mc, ForgeGui gui, float partialTicks) {
         mc.getProfiler().push("prepare");
-
         AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(mc.player);
         if (!FirstAid.isSynced) //Wait until we receive the remote model
             return;

@@ -107,7 +107,9 @@ public class ClientEventHandler {
     public static void onKeyPress(InputEvent event) {
         if (ClientHooks.SHOW_WOUNDS.consumeClick()) {
             Minecraft mc = Minecraft.getInstance();
-            AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(mc.player);
+            AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModelRealOptional(mc.player);
+            //Dont reven run if damagemodel null
+            if (damageModel != null){
             if (!damageModel.hasTutorial) {
                 damageModel.hasTutorial = true;
                 CapProvider.tutorialDone.add(mc.player.getName().getString());
@@ -115,6 +117,7 @@ public class ClientEventHandler {
             }
             else {
                 mc.setScreen(new GuiHealthScreen(damageModel));
+            }
             }
         }
     }

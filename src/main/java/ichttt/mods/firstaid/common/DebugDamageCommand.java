@@ -65,16 +65,17 @@ public class DebugDamageCommand {
     private static int handleCommand(EnumPlayerPart part, float damage, boolean debuff, ServerPlayer player) throws CommandSyntaxException {
         if (damage == 0F)
             throw TYPE.create();
-        AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModel(player);
-        if (part == null) {
-            for (EnumPlayerPart aPart : EnumPlayerPart.VALUES) {
-                doDamage(aPart, damage, debuff, player, damageModel);
+        AbstractPlayerDamageModel damageModel = CommonUtils.getDamageModelRealOptional(player);
+        if (damageModel != null){
+            if (part == null) {
+                for (EnumPlayerPart aPart : EnumPlayerPart.VALUES) {
+                    doDamage(aPart, damage, debuff, player, damageModel);
+                }
+            } else {
+                doDamage(part, damage, debuff, player, damageModel);
             }
-        } else {
-            doDamage(part, damage, debuff, player, damageModel);
+            FirstAid.NETWORKING.send(PacketDistributor.PLAYER.with(() -> player), new MessageSyncDamageModel(damageModel, false));
         }
-
-        FirstAid.NETWORKING.send(PacketDistributor.PLAYER.with(() -> player), new MessageSyncDamageModel(damageModel, false));
         return 1;
     }
 

@@ -17,7 +17,7 @@ The API package is licensed under the LGPLv2.1 as in API_LICENSE
 This project currently uses the heartbeat sound from <href>http://soundbible.com/2162-Human-Heartbeat.html</href>.
 It is licensed under the Attribution 3.0 license. Special thanks!
 
-Also, thanks to ichttt for making teh original mod and making it under GPL.
+Also, thanks to ichttt for making the original mod and making it under GPL.
 
 # Get it here!
 https://legacy.curseforge.com/minecraft/mc-mods/uls-firstaid-fork
